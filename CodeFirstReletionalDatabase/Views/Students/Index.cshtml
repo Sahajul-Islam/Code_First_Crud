@@ -1,0 +1,60 @@
+﻿@model IEnumerable<CodeFirstReletionalDatabase.Models.Student>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-12">
+        <h2>Students List</h2>
+        <div class="d-flex justify-content-end">
+            @Html.ActionLink("Create", "Create", "Students", new { }, new { @class = "btn btn-sm btn-primary" })
+        </div>
+        <table class="table table-hover table-striped table-bordered">
+            <thead class="table-primary">
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.Photo)</th>
+                    <th>@Html.DisplayNameFor(x => x.StudentName)</th>
+                    <th>@Html.DisplayNameFor(x => x.AddmitionDate)</th>
+                    <th>@Html.DisplayNameFor(x => x.Phone)</th>
+                    <th>@Html.DisplayNameFor(x => x.CourseId)</th>
+                    <th>@Html.DisplayNameFor(x => x.IsRegular)</th>
+
+                    <th>---</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count() > 0)
+                {
+                    foreach (var c in Model)
+                    {
+                <tr>
+                    <td><img src="~/Uploads/@c.Photo" style="width:50px;" class="rounded-circle" /></td>
+                    <td>@Html.DisplayFor(x => c.StudentName)</td>
+                    <td>@Html.DisplayFor(x => c.AddmitionDate)</td>
+                    <td>@Html.DisplayFor(x => c.Phone)</td>
+                    <td>@Html.DisplayFor(x => c.IsRegular)</td>
+                    <td>@Html.DisplayFor(x => c.Course.CourseName)</td>
+
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", "Students", new { id = c.StudentId }, new { @class = "btn btn-sm btn-primary" })
+                        @Html.ActionLink("Delete", "Delete", "Students", new { id = c.StudentId }, new { @class = "btn btn-sm btn-danger" })
+                    </td>
+                </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="7">No Data Here</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        @Html.ActionLink("Back to List", "Index", "Courses")
+    </div>
+</div>
+
